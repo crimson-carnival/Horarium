@@ -5,6 +5,6 @@ int main() {
     printf("Hello, World!\n");
     scanf("%d", &a);
     printf("%d\n", a*a);
-    printf("This is just a test commit.\n")
+    printf("This is just a test commit\n")
     return 0;
 }
