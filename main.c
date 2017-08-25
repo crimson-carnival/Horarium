@@ -7,4 +7,5 @@ int main() {
     printf("%d\n", a*a);
     printf("This is just a test commit.\n")
     return 0;
+
 }
