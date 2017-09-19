@@ -1,6 +1,16 @@
 #include <stdio.h>
 
+struct student {
+    char name[];
+    int credits;
+    char code[];
+};
 
+struct subject {
+    char name[];
+    int credits;
+    char code[];
+};
 
 int main() {
     int a;
