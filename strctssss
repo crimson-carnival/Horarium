@@ -1,0 +1,17 @@
+struct course{
+int students;
+int subjects;
+char courseId[];
+int year;
+    
+    int main()
+        int arr[10];
+
+
+    
+    
+    
+    struct roomtype{
+       int capacity;
+        char room_no[];
+    };
