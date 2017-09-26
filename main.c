@@ -11,6 +11,18 @@ struct subject {
     int credits;
     char code[]; //Subject Code
 };
+struct course {
+    int students;
+    int subjects;
+    char courseId[];
+    int year;
+};
+
+
+struct roomtype {
+    int capacity;
+    char room_no[];
+};
 
 struct teachers {
     char id[];
@@ -27,8 +39,7 @@ int main() {
     int a;
     printf("Hello, World!\n");
     scanf("%d", &a);
-    printf("%d\n", a*a);
+    printf("%d\n", a * a);
     printf("This is just a test commit.\n");
     return 0;
 }
-
