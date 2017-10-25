@@ -1,45 +1,111 @@
-#include <stdio.h>
-#include <string.h>
+#include<stdio.h>
+#include"assets.h"
 
-struct student {
-    char name[];
-    char id[]; //College ID
-};
+void input_teacher(struct teacher_info *ptr)
+{
+	printf("Name: ");
+	scanf("%s",ptr->name);
+	printf("ID: ");
+	scanf("%s",ptr->id);
+	printf("Subject code for the teacher's subject: ");
+	scanf("%s",ptr->subject_code);
+}
+void display_teacher(struct teacher_info *ptr)
+{
+        printf("Name: ");
+        printf("%s\n",ptr->name);
+        printf("ID: ");
+        printf("%s\n",ptr->id);
+        printf("Subject code for the teacher's subject: ");
+        printf("%s\n",ptr->subject_code);
+}
 
-struct subject {
-    char name[];
-    int credits;
-    char code[]; //Subject Code
-};
-struct course {
-    int students;
-    int subjects;
-    char courseId[];
-    int year;
-};
+void input_course(struct course_info *ptr)
+{
+	printf("Enter course name: ");
+	scanf("%s",ptr->name);
+	printf("Enter course ID: ");
+        scanf("%s",ptr->id);
+	printf("Enter number of students: ");
+	scanf("%d",&ptr->students);
+}
+void display_course(struct course_info *ptr)
+{
+        printf("Enter course name: ");
+        printf("%s\n",ptr->name);
+        printf("Enter course ID: ");
+        printf("%s\n",ptr->id);
+        printf("Enter number of students: ");
+        printf("%d\n",ptr->students);
+}
 
+void input_subject(struct subject_info *ptr)
+{
+	printf("Enter subject's name: ");
+	scanf("%s",ptr->name);
+	printf("Enter subject code: ");
+	scanf("%s",ptr->code);
+	printf("Enter credits: ");
+	scanf("%d",&ptr->credits);
+}
+void display_subject(struct subject_info *ptr)
+{
+        printf("Enter subject's name: ");
+        printf("%s\n",ptr->name);
+        printf("Enter subject code: ");
+        printf("%s\n",ptr->code);
+        printf("Enter credits: ");
+        printf("%d\n",ptr->credits);
+}
 
-struct roomtype {
-    int capacity;
-    char room_no[];
-};
+int main()
+{
+	int i;
+	
+	struct teacher_info *t=teacher;
+	struct teacher_info *temp_t = t;
+	struct course_info *c=course;
+	struct course_info *temp_c = c;
+	struct subject_info *s=subject;
+	struct subject_info *temp_s = s;
 
-struct teachers {
-    char id[];
-    char name[];
-    char subject_code[]; //Array of subjects
-};
-
-struct days {
-    int hours_per_day;
-    int num_of_days;
-};
-
-int main() {
-    int a;
-    printf("Hello, World!\n");
-    scanf("%d", &a);
-    printf("%d\n", a * a);
-    printf("This is just a test commit.\n");
-    return 0;
+	for(i=0;i<5;i++)
+	{
+		printf("Please enter the details for subject %d:\n",(i+1));
+                input_subject(temp_s);
+                temp_s++;
+	}
+	for(i=0;i<5;i++)
+	{
+		printf("Please enter the details for teacher %d:\n",(i+1));
+		input_teacher(temp_t);
+		temp_t++;
+	}
+	for(i=0;i<2;i++)
+	{
+		printf("Please enter the details for course %d:\n",(i+1));
+		input_course(temp_c);
+		temp_c++;
+	}
+	
+	temp_t=t;
+	temp_c=c;
+	temp_s=s;
+	for(i=0;i<5;i++)
+	{
+		printf("\nFor i=%d:\n",i);
+		printf("Subject Details:\n");
+		display_subject(temp_s);
+		temp_s++;
+		printf("Teacher Details:\n");
+                display_teacher(temp_t);
+                temp_t++;
+		if(i<2)
+		{
+			printf("Course Details:\n");
+                	display_course(temp_c);
+                	temp_c++;
+		}
+	}
+	return 0;
 }
