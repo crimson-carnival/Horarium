@@ -58,16 +58,24 @@ void display_subject(struct subject_info *ptr)
         printf("%d\n",ptr->credits);
 }
 
+void reset_teacher(struct teacher_info *ptr)
+{
+	int i,j;
+	for(i=0;i<8;i++) for(j=0;j<5;j++) ptr->timetable[i][j][0]='\0';
+}
+void reset_course(struct course_info *ptr)
+{
+	int i,j;
+        for(i=0;i<8;i++) for(j=0;j<5;j++) ptr->timetable[i][j][0]='\0';
+}
+
 int main()
 {
 	int i;
 	
-	struct teacher_info *t=teacher;
-	struct teacher_info *temp_t = t;
-	struct course_info *c=course;
-	struct course_info *temp_c = c;
-	struct subject_info *s=subject;
-	struct subject_info *temp_s = s;
+	struct teacher_info *temp_t = teacher;
+	struct course_info *temp_c = course;
+	struct subject_info *temp_s = subject;
 
 	for(i=0;i<5;i++)
 	{
@@ -79,18 +87,21 @@ int main()
 	{
 		printf("Please enter the details for teacher %d:\n",(i+1));
 		input_teacher(temp_t);
+		reset_teacher(temp_t);
 		temp_t++;
 	}
 	for(i=0;i<2;i++)
 	{
 		printf("Please enter the details for course %d:\n",(i+1));
 		input_course(temp_c);
+		reset_course(temp_c);
 		temp_c++;
 	}
 	
-	temp_t=t;
-	temp_c=c;
-	temp_s=s;
+	temp_t=teacher;
+	temp_c=course;
+	temp_s=subject;
+
 	for(i=0;i<5;i++)
 	{
 		printf("\nFor i=%d:\n",i);
@@ -107,5 +118,6 @@ int main()
                 	temp_c++;
 		}
 	}
+
 	return 0;
 }
