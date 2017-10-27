@@ -77,12 +77,15 @@ void reset_course(struct course_info *ptr)
 
 void timetable(struct course_info *ptr, int i, int j)
 {
-    printf("Setting timetable for %s.\n",ptr->name);
-    if(strcmp(t->timetable[i][j],"Break")==0)
+    int index=0;
+    temp=t;
+    while(strcmp(t[index]->timetable[i][j],"Break")==0 && index<5) index++;
+    if(index<=4)
     {
-        ptr[i][j]->timetable = t->subject_code;
-        t->timetable[i][j]=ptr->name;
-        t++;
+        if(s[index]->credits>0)
+        ptr[i][j]->timetable = t[index]->subject_code;
+        t[index]->timetable[i][j]=ptr->name;
+        s[index]->credits--;
     }
     if(i==7 && j==4) return;
     else if(j==4) timetable(ptr, i+1, 0);
