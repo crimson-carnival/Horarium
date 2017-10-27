@@ -66,7 +66,7 @@ void reset_teacher(struct teacher_info *ptr)
 void reset_course(struct course_info *ptr)
 {
 	int i,j;
-        for(i=0;i<8;i++) for(j=0;j<5;j++) ptr->timetable[i][j][0]='\0';
+    for(i=0;i<8;i++) for(j=0;j<5;j++) ptr->timetable[i][j][0]='\0';
 }
 
 int main()
