@@ -1,6 +1,12 @@
 #include<stdio.h>
 #include"assets.h"
 
+struct teacher_info *t = teacher;
+struct course_info *c = course;
+struct subject_info *s = subject;
+
+struct teacher_info *temp = t;
+
 void input_teacher(struct teacher_info *ptr)
 {
 	printf("Name: ");
@@ -69,13 +75,23 @@ void reset_course(struct course_info *ptr)
     for(i=0;i<8;i++) for(j=0;j<5;j++) ptr->timetable[i][j][0]='\0';
 }
 
+void timetable(struct course_info *ptr, int i, int j)
+{
+    printf("Setting timetable for %s.\n",ptr->name);
+    if(strcmp(t->timetable[i][j],"Break")==0)
+    {
+        ptr[i][j]->timetable = t->subject_code;
+        t->timetable[i][j]=ptr->name;
+    }
+}
+
 int main()
 {
 	int i;
-	
-	struct teacher_info *temp_t = teacher;
-	struct course_info *temp_c = course;
-	struct subject_info *temp_s = subject;
+
+    struct teacher_info *temp_t = t;
+    struct course_info *temp_c = c;
+    struct subject_info *temp_s = s;
 
 	for(i=0;i<5;i++)
 	{
