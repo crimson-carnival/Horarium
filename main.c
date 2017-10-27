@@ -31,7 +31,7 @@ void input_course(struct course_info *ptr)
 	printf("Enter course name: ");
 	scanf("%s",ptr->name);
 	printf("Enter course ID: ");
-        scanf("%s",ptr->id);
+    scanf("%s",ptr->id);
 	printf("Enter number of students: ");
 	scanf("%d",&ptr->students);
 }
@@ -82,7 +82,11 @@ void timetable(struct course_info *ptr, int i, int j)
     {
         ptr[i][j]->timetable = t->subject_code;
         t->timetable[i][j]=ptr->name;
+        t++;
     }
+    if(i==7 && j==4) return;
+    else if(j==4) timetable(ptr, i+1, 0);
+    else timetable(ptr, i, j+1);
 }
 
 int main()
