@@ -1,5 +1,10 @@
 #include<stdio.h>
+#include<string.h>
 #include"assets.h"
+
+struct teacher_info *t = teacher;
+struct course_info *c = course;
+struct subject_info *s = subject;
 
 void input_teacher(struct teacher_info *ptr)
 {
@@ -25,7 +30,7 @@ void input_course(struct course_info *ptr)
 	printf("Enter course name: ");
 	scanf("%s",ptr->name);
 	printf("Enter course ID: ");
-        scanf("%s",ptr->id);
+    scanf("%s",ptr->id);
 	printf("Enter number of students: ");
 	scanf("%d",&ptr->students);
 }
@@ -69,13 +74,30 @@ void reset_course(struct course_info *ptr)
     for(i=0;i<8;i++) for(j=0;j<5;j++) ptr->timetable[i][j][0]='\0';
 }
 
+void timetable(struct course_info *ptr, int i, int j)
+{
+    int index=0;
+    struct teacher_info *temp = t;
+    while(strcmp((temp+index)->timetable[i][j],"Break")==0 && index<5) index++;
+    if(index<=4)
+    {
+        if((s+index)->credits>0)
+        ptr->timetable[i][j] = (temp+index)->subject_code;
+        (temp+index)->timetable[i][j]=ptr->name;
+        (s+index)->credits--;
+    }
+    if(i==7 && j==4) return;
+    else if(j==4) timetable(ptr, i+1, 0);
+    else timetable(ptr, i, j+1);
+}
+
 int main()
 {
 	int i;
-	
-	struct teacher_info *temp_t = teacher;
-	struct course_info *temp_c = course;
-	struct subject_info *temp_s = subject;
+
+    struct teacher_info *temp_t = t;
+    struct course_info *temp_c = c;
+    struct subject_info *temp_s = s;
 
 	for(i=0;i<5;i++)
 	{
