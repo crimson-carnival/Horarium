@@ -66,12 +66,12 @@ void display_subject(struct subject_info *ptr)
 void reset_teacher(struct teacher_info *ptr)
 {
 	int i,j;
-	for(i=0;i<8;i++) for(j=0;j<5;j++) ptr->timetable[i][j][0]='\0';
+	for(i=0;i<5;i++) for(j=0;j<8;j++) ptr->timetable[i][j]="Break";
 }
 void reset_course(struct course_info *ptr)
 {
 	int i,j;
-    for(i=0;i<8;i++) for(j=0;j<5;j++) ptr->timetable[i][j][0]='\0';
+    for(i=0;i<5;i++) for(j=0;j<8;j++) ptr->timetable[i][j]="Break";
 }
 
 void timetable(struct course_info *ptr, int i, int j)
@@ -85,7 +85,6 @@ void timetable(struct course_info *ptr, int i, int j)
         {
             ptr->timetable[i][j] = (temp+index)->subject_code;
             (temp+index)->timetable[i][j] = ptr->name;
-            ptr->timetable[i][j] = (temp+index)->name;
             (s+index)->credits--;
         }
     }
