@@ -17,12 +17,12 @@ void input_teacher(struct teacher_info *ptr)
 }
 void display_teacher(struct teacher_info *ptr)
 {
-        printf("Name: ");
-        printf("%s\n",ptr->name);
-        printf("ID: ");
-        printf("%s\n",ptr->id);
-        printf("Subject code for the teacher's subject: ");
-        printf("%s\n",ptr->subject_code);
+    printf("Name: ");
+    printf("%s\n",ptr->name);
+    printf("ID: ");
+    printf("%s\n",ptr->id);
+    printf("Subject code for the teacher's subject: ");
+    printf("%s\n",ptr->subject_code);
 }
 
 void input_course(struct course_info *ptr)
@@ -36,12 +36,12 @@ void input_course(struct course_info *ptr)
 }
 void display_course(struct course_info *ptr)
 {
-        printf("Enter course name: ");
-        printf("%s\n",ptr->name);
-        printf("Enter course ID: ");
-        printf("%s\n",ptr->id);
-        printf("Enter number of students: ");
-        printf("%d\n",ptr->students);
+    printf("Enter course name: ");
+    printf("%s\n",ptr->name);
+    printf("Enter course ID: ");
+    printf("%s\n",ptr->id);
+    printf("Enter number of students: ");
+    printf("%d\n",ptr->students);
 }
 
 void input_subject(struct subject_info *ptr)
@@ -55,12 +55,12 @@ void input_subject(struct subject_info *ptr)
 }
 void display_subject(struct subject_info *ptr)
 {
-        printf("Enter subject's name: ");
-        printf("%s\n",ptr->name);
-        printf("Enter subject code: ");
-        printf("%s\n",ptr->code);
-        printf("Enter credits: ");
-        printf("%d\n",ptr->credits);
+    printf("Enter subject's name: ");
+    printf("%s\n",ptr->name);
+    printf("Enter subject code: ");
+    printf("%s\n",ptr->code);
+    printf("Enter credits: ");
+    printf("%d\n",ptr->credits);
 }
 
 void reset_teacher(struct teacher_info *ptr)
@@ -78,22 +78,25 @@ void timetable(struct course_info *ptr, int i, int j)
 {
     int index=0;
     struct teacher_info *temp = t;
-    while(strcmp((temp+index)->timetable[i][j],"Break")==0 && index<5) index++;
+    while(strcmp((temp+index)->timetable[i][j],"Break")!=0 && index<5) index++;
     if(index<=4)
     {
         if((s+index)->credits>0)
-        ptr->timetable[i][j] = (temp+index)->subject_code;
-        (temp+index)->timetable[i][j]=ptr->name;
-        (s+index)->credits--;
+        {
+            ptr->timetable[i][j] = (temp+index)->subject_code;
+            (temp+index)->timetable[i][j] = ptr->name;
+            ptr->timetable[i][j] = (temp+index)->name;
+            (s+index)->credits--;
+        }
     }
-    if(i==7 && j==4) return;
-    else if(j==4) timetable(ptr, i+1, 0);
+    if(i==4 && j==7) return;
+    else if(j==7) timetable(ptr, i+1, 0);
     else timetable(ptr, i, j+1);
 }
 
 int main()
 {
-	int i;
+	int i, j, k;
 
     struct teacher_info *temp_t = t;
     struct course_info *temp_c = c;
@@ -119,8 +122,12 @@ int main()
 		reset_course(temp_c);
 		temp_c++;
 	}
+
+    timetable(c,0,0);
+    timetable(c+1,0,0);
 	
-	temp_t=teacher;
+    //Display
+    temp_t=teacher;
 	temp_c=course;
 	temp_s=subject;
 
@@ -140,6 +147,18 @@ int main()
                 	temp_c++;
 		}
 	}
+
+    printf("Timetables: ");
+
+    for(i=0;i<5;i++)
+    {
+        printf("Course %d\n\n",(i+1));
+        for(j=0;j<5;j++)
+        {
+            for(k=0;k<5;k++) printf("%s\t",c->timetable[j][k]);
+            printf("\n");
+        }
+    }
 
 	return 0;
 }
