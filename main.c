@@ -5,7 +5,6 @@
 #include"resources.h"
 #include"input.h"
 #include"output.h"
-#include"input_s.h"
 #include"generate.h"
 
 int main()
@@ -16,7 +15,7 @@ int main()
     struct course_info *temp_c = c;
     struct subject_info *temp_s = s;
 
-	/*for(i=0;i<5;i++)
+	for(i=0;i<5;i++)
 	{
 		printf("Please enter the details for subject %d:\n",(i+1));
                 input_subject(temp_s);
@@ -35,38 +34,7 @@ int main()
 		input_course(temp_c);
 		reset_course(temp_c);
 		temp_c++;
-	}*/
-
-    int c2, emp;
-    do
-    {
-        printf("\n\t---Select your choice---------\n");
-        printf("\n\t1. INSERT_TEACHER\n\t2.INSERT_COURSE\n\t3.INSERT_SUBJECT\n");
-
-        printf("\n\t4. EXIT");
-        printf("\n\n------------------------------------------\n");
-        printf("\nEnter your choice:");
-        scanf("%d", &c2);
-        printf("\n");
-        switch (c2)
-        {
-            case 1:
-                insert_teachers2();
-                break;
-            case 2:
-                insert_course2();
-                break;
-            case 3:
-                insert_subject2();
-                break;
-            case 4:
-                exit(1);
-                break;
-            default:
-                printf("\nYour choice is wrong\nPlease try again...\n");
-            break;
-        }
-    } while (c2 != 4);
+	}
 
     for(i=0;i<2;i++) {
         s_temp = s;
