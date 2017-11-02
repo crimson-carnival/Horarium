@@ -5,6 +5,12 @@
 struct teacher_info *t = teacher;
 struct course_info *c = course;
 struct subject_info *s = subject;
+struct subject_info *s_temp = s;
+struct teacher_info *t_temp = t;
+
+int index = 0;
+int lunch = 0;
+int day_classes = 0;
 
 void input_teacher(struct teacher_info *ptr)
 {
@@ -76,20 +82,41 @@ void reset_course(struct course_info *ptr)
 
 void timetable(struct course_info *ptr, int i, int j)
 {
-    int index=0;
-    struct teacher_info *temp = t;
-    while(strcmp((temp+index)->timetable[i][j],"Break")!=0 && index<5) index++;
-    if(index<=4)
+    if( (lunch == 0 && j == 3) || (lunch == 1 && j == 4) ) timetable(ptr,i,j+1);
+    if(day_classes == 4)
     {
-        if((s+index)->credits>0)
+        if(i!=4)
         {
-            ptr->timetable[i][j] = (temp+index)->subject_code;
-            (temp+index)->timetable[i][j] = ptr->name;
-            (s+index)->credits--;
+            day_classes = 0;
+            timtetable(ptr, i+1, 0);
         }
+        else retun;
+    }
+
+    int n;
+
+    for(n=0;n<5 && strcmp((t_temp+index)->timetable[i][j],"Break")!=0; n++)
+    {
+        if(index==4) index = 0;
+        else index++;
+    }
+    if(n<5)
+    {
+        if((s_temp+index)->credits>0)
+        {
+            ptr->timetable[i][j] = (t_temp+index)->subject_code;
+            (t_temp+index)->timetable[i][j] = ptr->name;
+            (s_temp+index)->credits--;
+            index++;
+        }
+        day_classes++;
     }
     if(i==4 && j==7) return;
-    else if(j==7) timetable(ptr, i+1, 0);
+    else if(j==7)
+    {
+        day_classes = 0;
+        timetable(ptr, i+1, 0);
+    }
     else timetable(ptr, i, j+1);
 }
 
@@ -122,8 +149,12 @@ int main()
 		temp_c++;
 	}
 
-    timetable(c,0,0);
-    timetable(c+1,0,0);
+    for(i=0;i<2;i++) {
+        s_temp = s;
+        lunch = i%2;
+        day_classes = 0;
+        timetable(c+i,0,0);
+    }
 	
     //Display
     temp_t=teacher;
