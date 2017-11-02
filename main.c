@@ -5,12 +5,12 @@
 struct teacher_info *t = teacher;
 struct course_info *c = course;
 struct subject_info *s = subject;
-struct subject_info *s_temp = s;
-struct teacher_info *t_temp = t;
+struct subject_info *s_temp = subject;
+struct teacher_info *t_temp = teacher;
 
-int index = 0;
-int lunch = 0;
-int day_classes = 0;
+int ind = 0; //index of current teacher/subject being checked/assigned
+int lunch = 0; //Alternates between 0 and 1 so that half the classes have a break in slot 3 and half in slot 4
+int day_classes = 0; //Number of classes held in the day
 
 void input_teacher(struct teacher_info *ptr)
 {
@@ -88,26 +88,26 @@ void timetable(struct course_info *ptr, int i, int j)
         if(i!=4)
         {
             day_classes = 0;
-            timtetable(ptr, i+1, 0);
+            timetable(ptr, i+1, 0); //Next day
         }
-        else retun;
+        else return;
     }
 
     int n;
 
-    for(n=0;n<5 && strcmp((t_temp+index)->timetable[i][j],"Break")!=0; n++)
+    for(n=0;n<5 && strcmp((t_temp+ind)->timetable[i][j],"Break")!=0; n++)
     {
-        if(index==4) index = 0;
-        else index++;
+        if(ind==4) ind = 0;
+        else ind++;
     }
     if(n<5)
     {
-        if((s_temp+index)->credits>0)
+        if((s_temp+ind)->credits>0)
         {
-            ptr->timetable[i][j] = (t_temp+index)->subject_code;
-            (t_temp+index)->timetable[i][j] = ptr->name;
-            (s_temp+index)->credits--;
-            index++;
+            ptr->timetable[i][j] = (t_temp+ind)->subject_code;
+            (t_temp+ind)->timetable[i][j] = ptr->name;
+            (s_temp+ind)->credits--;
+            ind++;
         }
         day_classes++;
     }
@@ -117,7 +117,7 @@ void timetable(struct course_info *ptr, int i, int j)
         day_classes = 0;
         timetable(ptr, i+1, 0);
     }
-    else timetable(ptr, i, j+1);
+    else timetable(ptr, i, j+1); //Next class in same day
 }
 
 int main()
