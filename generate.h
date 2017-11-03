@@ -11,6 +11,8 @@ void reset_course(struct course_info *ptr)
 
 void timetable(struct course_info *ptr, int i, int j)
 {
+    int n;
+
     if( (lunch == 0 && j == 3) || (lunch == 1 && j == 4) ) timetable(ptr,i,j+1);
     if(day_classes == 4)
     {
@@ -21,8 +23,6 @@ void timetable(struct course_info *ptr, int i, int j)
         }
         else return;
     }
-
-    int n;
 
     for(n=0;n<5 && strcmp((t_temp+ind)->timetable[i][j],"Break")!=0; n++)
     {
