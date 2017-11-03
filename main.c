@@ -10,6 +10,7 @@
 int main()
 {
 	int i, j, k;
+    int creds[] = {4,4,4,4};
 
     struct teacher_info *temp_t = t;
     struct course_info *temp_c = c;
@@ -18,8 +19,8 @@ int main()
 	for(i=0;i<5;i++)
 	{
 		printf("Please enter the details for subject %d:\n",(i+1));
-                input_subject(temp_s);
-                temp_s++;
+        input_subject(temp_s);
+        temp_s++;
 	}
 	for(i=0;i<5;i++)
 	{
@@ -37,7 +38,7 @@ int main()
 	}
 
     for(i=0;i<2;i++) {
-        s_temp = s;
+        for(j = 0; j<5; j++) (s_temp+j)->credits = creds[j];
         lunch = i%2;
         day_classes = 0;
         timetable(c+i,0,0);
