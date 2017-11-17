@@ -27,3 +27,4 @@ void input_subject(struct subject_info *ptr)
 	printf("Enter credits: ");
 	scanf("%d",&ptr->credits);
 }
+//
