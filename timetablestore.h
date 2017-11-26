@@ -10,11 +10,11 @@ store_teacher_timetable()
 	fclose(fp);
   
   for(i=0;i<5;i++)
-    for(j=0;j<8;j++)
-        {
-        fprintf(fp,",%s"temp->timetable[i][j]);
-        
-          }
+  {  for(j=0;j<8;j++)
+       	{
+       	fprintf(fp,",%s"temp->timetable[i][j]);
+             }
+  }
           
 }
 store_course_timetable()
@@ -30,10 +30,10 @@ store_course_timetable()
 	fclose(fp);
   
   for(i=0;i<5;i++)
-    for(j=0;j<8;j++)
+  { for(j=0;j<8;j++)
         {
         fprintf(fp,",%s"temp->timetable[i][j]);
         
           }
-          
+  }       
 }
