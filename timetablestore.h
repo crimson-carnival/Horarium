@@ -1,6 +1,5 @@
-store_teacher_timetable()
+void store_teacher_timetable(struct teacher_info *temp;)
 {
-  struct teacher_info *temp;
   
   FILE *fp;
   char *s;
@@ -12,19 +11,18 @@ store_teacher_timetable()
   for(i=0;i<5;i++)
   {  for(j=0;j<8;j++)
        	{
-       	fprintf(fp,",%s"temp->timetable[i][j]);
+       	fprintf(fp," %s"temp->timetable[i][j]);
              }
   }
           
 }
-store_course_timetable()
+void store_course_timetable(struct course_info *temp;)
 {
-  struct course_info *temp;
-  struct subject_info *ptr;
+
   
   FILE *fp;
   char *s;
-  s=strcat(ptr->code,".csv");
+  s=strcat(temp->id,".csv");
 	FILE *fp;
 	fp=fopen(s,"w+");
 	fclose(fp);
@@ -32,7 +30,7 @@ store_course_timetable()
   for(i=0;i<5;i++)
   { for(j=0;j<8;j++)
         {
-        fprintf(fp,",%s"temp->timetable[i][j]);
+        fprintf(fp," %s"temp->timetable[i][j]);
         
           }
   }       
