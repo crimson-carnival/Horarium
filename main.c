@@ -6,6 +6,7 @@
 #include"input.h"
 #include"output.h"
 #include"generate.h"
+#include"file_read.h"
 
 int main()
 {
@@ -42,7 +43,7 @@ int main()
         lunch = i%2;
         day_classes = 0;
         timetable(c+i,0,0);
-        if(day_classes < 4) printf("Timtable not possible.\n");
+        if(day_classes < 4) printf("Timetable not possible.\n");
     }
 	
     //Display
