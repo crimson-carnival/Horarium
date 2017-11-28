@@ -17,7 +17,7 @@ int main()
     struct course_info *temp_c = c;
     struct subject_info *temp_s = s;
 
-	for(i=0;i<5;i++)
+	/*for(i=0;i<5;i++)
 	{
 		printf("Please enter the details for subject %d:\n",(i+1));
         input_subject(temp_s);
@@ -36,15 +36,31 @@ int main()
 		input_course(temp_c);
 		reset_course(temp_c);
 		temp_c++;
-	}
+	}*/
+
+    insert_teacher1();
+    insert_teacher2();
+    insert_teacher3();
+    insert_teacher4();
+    insert_teacher5();
+    insert_course_mft();
+    insert_course_ogi();
+    insert_subject();
 
     for(i=0;i<2;i++) {
         for(j = 0; j<5; j++) (s_temp+j)->credits = creds[j];
         lunch = i%2;
         day_classes = 0;
         timetable(c+i,0,0);
-        if(day_classes < 4) printf("Timetable not possible.\n");
+        if(day_classes < 4){
+            printf("Timetable not possible.\n");
+        }
+        else{
+            store_course_timetable(c+1);
+        }
     }
+
+    for(i=0;i<5;i++) store_teacher_timetable(t);
 	
     //Display
     temp_t=teacher;
