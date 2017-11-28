@@ -1,3 +1,4 @@
+
 void insert_teacher1(){
 
     int i=1, n;
@@ -22,6 +23,7 @@ void insert_teacher1(){
         fwrite(str2,1, sizeof(str2), fp);
 
     fclose(fp);
+
 }
 void insert_teacher2(){
 
