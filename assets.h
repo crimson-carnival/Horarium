@@ -6,13 +6,13 @@ struct teacher_info {
 } teacher[5];
 
 struct subject_info {
-	char name[10];
+	char name[50];
 	int credits;
 	char code[10];
 } subject[5];
 
 struct course_info {
-	char name[30];
+	char name[50];
 	char id[10];
 	int students;
 	char* timetable[5][8];

@@ -1,6 +1,5 @@
 void input_teacher(struct teacher_info *ptr)
 {
-	
 	printf("Name: ");
 	scanf("%s",ptr->name);
 	printf("ID: ");
