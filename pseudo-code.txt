@@ -1,28 +1,39 @@
-//j corresponds to the time slot, i corresponds to the day
+/*
+*The following function is to be called in a loop for each course
+*ptr is a pointer pointing to a course_infoa structure
+*j corresponds to the time slot, i corresponds to the day
+*ind is and index variab;e to point to the index of teachers
+*day-classes=0 before timetable() is intially called
+*/
 
 Define function timetable(course_info *ptr, int i, int j)
 {
-    check if time slot is a break then timetable(ptr, i, j+1)
-    check if 4 classes have already been scheduled for today
-        if it's not the last day (i!=4) then timetable(ptr, i+1, j)
-        else return
+    check if time slot is a lunch-break, then 
+        timetable(ptr, i, j+1)
+        break
     end if
     
-    run a for loop till a teacher is found who has a break or 5 iterations are run
-        if last index is reached, ind=0 to make the queue circular
+    check if day_classes = 4, then
+        if it's not the last day (i!=4), then timetable(ptr, i+1, j)
+        return
+    end if
+    
+    run a for loop using n variable, till a teacher is found who has a break or 5 iterations are run
+        if last index of teachers is reached, ind=0 to make the queue circular
         else ind++
     end for
     
-    if n<5 (a teacher is free in the slot) then
-        if credits for that dubject haven't been fulfilled then
-            set timetable for course and teacher
-            ind++ (next teacher to be considered next time)
+    if n<5 (a teacher is free in the slot), then
+        if credits for that subject haven't been fulfilled, then
+            set timetable[i][j] for course and teacher
+            if last index of teachers is reached, ind=0 to make the queue circular
+            else ind++ (next teacher to be considered next time)
             day_classes++ (class scheduled so counter incremented)
         end if
     end if
     
-    if i=4 and j=7 (last timeslot reached), return
-    else if j=7 (last timeslot of the day), 
+    if i=4 and j=7 (last timeslot reached), then return
+    else if j=7 (last timeslot of the day), then 
         day_classes=day_classes-4 (to compensate in case all 4 couldn't be scheduled)
         change the day -> timetable(ptr, i+1, 0)
     end if
